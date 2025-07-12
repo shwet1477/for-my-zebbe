@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export default function LoveGame() {
   const [started, setStarted] = useState(false);
@@ -15,45 +14,83 @@ export default function LoveGame() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-100 flex flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-4xl font-bold text-pink-600 mb-4">
+    <div style={styles.container}>
+      <h1 style={styles.header}>
         {finished ? "Surprise! 💖" : "Hi Bebe! 💕"}
       </h1>
 
       {!started && !finished && (
         <>
-          <p className="text-lg text-pink-700 mb-4">
+          <p style={styles.text}>
             I made something special for you... wanna see how much I love you? 💌
           </p>
-          <Button onClick={() => setStarted(true)} className="bg-pink-500 hover:bg-pink-600 text-white text-lg">
+          <button onClick={() => setStarted(true)} style={styles.button}>
             Start the Game 💘
-          </Button>
+          </button>
         </>
       )}
 
       {started && !finished && (
         <>
-          <p className="text-pink-700 text-xl mb-4">
+          <p style={styles.text}>
             Click to find out how much I love you! 😘
           </p>
-          <Button onClick={handleClick} className="bg-red-400 hover:bg-red-500 text-white text-lg">
+          <button onClick={handleClick} style={styles.button}>
             Click me! ❤️ ({lovePoints}/10)
-          </Button>
+          </button>
         </>
       )}
 
       {finished && (
         <>
-          <p className="text-pink-700 text-xl mb-4">
+          <p style={styles.text}>
             I love you more than words can ever say. Forever and ever 💍💗
           </p>
           <img
             src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmZrcXdhZnI5NjczdThkdWh0OXE5dTljb3FiMjBvd3o1dThsbHM1dSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/iKef9d47gZV68/giphy.gif"
             alt="Love Gif"
-            className="rounded-xl shadow-xl w-60"
+            style={styles.image}
           />
         </>
       )}
     </div>
   );
 }
+
+const styles = {
+  container: {
+    minHeight: "100vh",
+    backgroundColor: "#ffe4e6",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+    textAlign: "center",
+  },
+  header: {
+    fontSize: 36,
+    color: "#db2777",
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 18,
+    color: "#be185d",
+    marginBottom: 16,
+  },
+  button: {
+    backgroundColor: "#f43f5e",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    padding: "10px 20px",
+    fontSize: 16,
+    cursor: "pointer",
+    marginBottom: 20,
+  },
+  image: {
+    width: 200,
+    borderRadius: 12,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  },
+};
